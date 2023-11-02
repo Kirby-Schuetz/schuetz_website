@@ -1,4 +1,5 @@
-export default function SingleBlog() {
+
+export default function AllReviews() {
 
     return (
         <div>

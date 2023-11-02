@@ -1,10 +1,10 @@
-const BASE_URL = "http://localhost:5497/api";
+const BASE_URL = "http://localhost:5497/schuetzsite/users";
 
 //   LOGIN
 export async function logIn(username, password) {
     console.log("here");  
     try {
-        const response = await fetch(`${BASE_URL}/users/login`, {
+        const response = await fetch(`${BASE_URL}/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

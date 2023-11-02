@@ -34,7 +34,7 @@ const getAllBlogs = async () => {
         for (const row of rows) {
             row.blog_image = _bytesToString(row.blog_image);
         }
-        return rows
+        return rows;
     } catch (error) {
         throw error
     }

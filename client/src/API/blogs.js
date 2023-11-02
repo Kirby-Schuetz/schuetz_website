@@ -1,11 +1,14 @@
-const BASE_URL = "http://localhost:5497/api";
+const BASE_URL = "http://localhost:5497/schuetzsite/blogs";
 
 // GET all blogs
 export async function fetchAllBlogs() {
     console.log("Fetching blogs");
     try {
-        console.log("URL: ", `${BASE_URL}/blogs`);
-        const response = await fetch(`${BASE_URL}/blogs`);
+        console.log("URL: ", `${BASE_URL}/`);
+        const response = await fetch(`${BASE_URL}/`);
+        if (!response.ok) {
+            throw new Error('HTTP error! Status: ${reponse.status');
+        }
         const result = await response.json();
         return result;
     } catch (error) {
@@ -18,7 +21,7 @@ export async function fetchAllBlogs() {
 export async function createBlog(postData, token) {
     console.log("API Client: ", postData);
     try {
-        const response = await fetch(`${BASE_URL}/blogs/`, {
+        const response = await fetch(`${BASE_URL}/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -37,7 +40,7 @@ export async function createBlog(postData, token) {
 // GET blog by blog_id
 export async function getBlogByBlogId(blog_id) {
     try {
-        const response = await fetch(`${BASE_URL}/blogs/${blog_id}`);
+        const response = await fetch(`${BASE_URL}/${blog_id}`);
         if (response.status === 204) {
             const result = await response.json();
             return result;
@@ -50,7 +53,7 @@ export async function getBlogByBlogId(blog_id) {
 // PUT edit blog
 export const editBlog = async (blogEdits, blog_id, token) => {
     try {
-        const response = await fetch(`${BASE_URL}/blogs/${blog_id}`, {
+        const response = await fetch(`${BASE_URL}/${blog_id}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'appication/json',
@@ -70,7 +73,7 @@ export const editBlog = async (blogEdits, blog_id, token) => {
 // DELETE blog
 export async function deleteBlog(blog_id, token) {
     try {
-        const response = await fetch(`${BASE_URL}/blogs/${blog_id}`, {
+        const response = await fetch(`${BASE_URL}/${blog_id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',

@@ -1,11 +1,11 @@
-const BASE_URL = "http://localhost:5497/api";
+const BASE_URL = "http://localhost:5497/schuetzsite/projects";
 
 // GET all projects
 export async function fetchAllProjects() {
     console.log("Fetching projects");
     try {
-        console.log("URL: ", `${BASE_URL}/projects`);
-        const response = await fetch(`${BASE_URL}/projects`);
+        console.log("URL: ", `${BASE_URL}/`);
+        const response = await fetch(`${BASE_URL}/`);
         const result = await response.json();
         return result;
     } catch (error) {
@@ -17,7 +17,7 @@ export async function fetchAllProjects() {
 export async function createProject(postData, token) {
     console.log("API Client: ", postData)
     try {
-        const response = await fetch(`${BASE_URL}/projects/`, {
+        const response = await fetch(`${BASE_URL}`, {
             method: "POST",
             headers: {
                 "Content-Type": "applicatin/json",
@@ -35,7 +35,7 @@ export async function createProject(postData, token) {
 // GET project by project_id
 export async function getProjectByProjectId(project_id) {
     try {
-        const response = await fetch(`${BASE_URL}/projects/${project_id}`);
+        const response = await fetch(`${BASE_URL}/${project_id}`);
         if (response.status === 204) {
             const result = await response.json();
             return result;
@@ -47,7 +47,7 @@ export async function getProjectByProjectId(project_id) {
 // PUT edit project
 export const editProject = async (projectEdits, project_id, token) => {
     try {
-      const response = await fetch(`${BASE_URL}/projects/${project_id}`, {
+      const response = await fetch(`${BASE_URL}/${project_id}`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ export const editProject = async (projectEdits, project_id, token) => {
 // DELETE project
 export async function deleteProject(project_id, token) {
     try {
-        const response = await fetch(`${BASE_URL}/projects/${project_id}`, {
+        const response = await fetch(`${BASE_URL}/${project_id}`, {
             method: "DELETE",
             headers: {
               'Content-Type': 'application/json',

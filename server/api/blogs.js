@@ -20,7 +20,8 @@ router.get('/', async (req, res, next) => {
         const blogs = await getAllBlogs();
         res.send(blogs);
     } catch (error) {
-        next(error);
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" })
     }
 });
 

@@ -1,11 +1,11 @@
-const BASE_URL = "http://localhost:5497/api";
+const BASE_URL = "http://localhost:5497/schuetzsite/reviews";
 
 // GET all reviews
 export async function fetchAllReviews() {
     console.log("Fetching reviews");
     try {
-        console.log("URL: ", `${BASE_URL}/reviews`);
-        const response = await fetch(`${BASE_URL}/reviews`);
+        console.log("URL: ", `${BASE_URL}/`);
+        const response = await fetch(`${BASE_URL}/`);
         const result = await response.json();
         return result;
     } catch (error) {
@@ -17,7 +17,7 @@ export async function fetchAllReviews() {
 export async function createReview(postData, token) {
     console.log("API Client: ", postData)
     try {
-        const response = await fetch(`${BASE_URL}/reviews/`, {
+        const response = await fetch(`${BASE_URL}/`, {
             method: "POST",
             headers: {
                 "Content-Type": "applicatin/json",
@@ -47,7 +47,7 @@ export async function getReviewByReviewId(review_id) {
 // PUT edit review
 export const editReview = async (reviewEdits, review_id, token) => {
     try {
-      const response = await fetch(`${BASE_URL}/reviews/${review_id}`, {
+      const response = await fetch(`${BASE_URL}/${review_id}`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ export const editReview = async (reviewEdits, review_id, token) => {
 // DELETE review
 export async function deleteReview(review_id, token) {
     try {
-        const response = await fetch(`${BASE_URL}/reviews/${review_id}`, {
+        const response = await fetch(`${BASE_URL}/${review_id}`, {
             method: "DELETE",
             headers: {
               'Content-Type': 'application/json',

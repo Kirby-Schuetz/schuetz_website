@@ -1,5 +1,5 @@
 
-export default function Reviews() {
+export default function CreateReview() {
 
     return (
         <div>
