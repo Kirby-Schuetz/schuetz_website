@@ -1,7 +1,7 @@
 // import and invoke express to create your app
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 5497;
 
 const client = require('./db/client');
 // connect to client

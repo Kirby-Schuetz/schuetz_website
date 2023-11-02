@@ -1,7 +1,12 @@
 // pull in connection to my local database
 const client = require('./client')
 
-const { usershelper, blogshelper, projectshelper, reviewshelper } = require('./seedData')
+const { createUser } = require('./helpers/usershelper')
+const { createBlog } = require('./helpers/blogshelper')
+const { createProject } = require('./helpers/projectshelper')
+const { createReview } = require('./helpers/reviewshelper')
+
+const { users, blogs, projects, reviews } = require('./seedData')
 
 // drop tables
 const dropTables = async () => {
@@ -25,6 +30,7 @@ const createTables = async () => {
     console.log("building tables")
     await client.query(`
     CREATE TABLE users (
+        user_id SERIAL PRIMARY KEY,
         username varchar,
         password varchar
     );
@@ -56,24 +62,23 @@ const createTables = async () => {
 // create initial items
 
 // create user
-const createInitialUsers = async () => {
+const createInitialUser = async () => {
     try {
-        // looping through "users" array from seedData
         for (const user of users) {
-            // insert each user into the table
             await createUser(user)
         }
         console.log("created user")
     } catch (error) {
         throw error
     }
+    console.log(users);
 }
 
 // create blogs
-const createInitialBlogs = async () => {
+const createInitialBlog = async () => {
     try {
         for (const blog of blogs) {
-            await createInitialBlogs(blog)
+            await createBlog(blog)
         }
         console.log("created blogs")
     } catch (error) {
@@ -82,10 +87,10 @@ const createInitialBlogs = async () => {
 }
 
 // create projects
-const createInitialProjects = async () => {
+const createInitialProject = async () => {
     try {
         for (const project of projects) {
-            await createInitialProjects(project)
+            await createProject(project)
         }
         console.log("created projects")
     } catch (error) {
@@ -94,10 +99,10 @@ const createInitialProjects = async () => {
 }
 
 // create reviews
-const createInitialReviews = async () => {
+const createInitialReview = async () => {
     try {
         for (const review of reviews) {
-            await createInitialReviews(review)
+            await createReview(review)
         }
         console.log("created reviews")
     } catch (error) {
@@ -113,10 +118,10 @@ const rebuildDb = async () => {
         await createTables()
 
         console.log("starting to seed")
-        await createInitialUsers()
-        await createInitialBlogs()
-        await createInitialProjects()
-        await createInitialReviews()
+        await createInitialUser()
+        await createInitialBlog()
+        await createInitialProject()
+        await createInitialReview()
     
     } catch(error) {
         console.log(error)

@@ -12,7 +12,7 @@ const createProject = async ({ project_title, project_post, project_image}) => {
             rows: [project],
         } = await client.query (
             `
-            INSER INTO project(project_title, project_post, project_image)
+            INSERT INTO projects(project_title, project_post, project_image)
             VALUES($1, $2, $3)
             RETURNING *
             `,
@@ -76,7 +76,7 @@ const updateProject = async (project_id, updatedProject) => {
             updatedProject.project_image
         ]
         );
-        return review;
+        return project;
     } catch (error) {
         throw error;
     }

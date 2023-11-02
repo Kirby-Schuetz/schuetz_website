@@ -1,5 +1,22 @@
 const client = require('../client')
 
+const createUser = async ({ username, password }) => {
+  try {
+      const {
+          rows: [user],
+      } = await client.query (
+          ` INSERT INTO users (username, password)
+            VALUES($1, $2)
+            RETURNING *;
+          `,
+          [username, password]
+      )
+          return user
+  } catch (error) {
+      throw error
+  }
+}
+
 const loginUser = async (username, password) => {
     try {
       const {
@@ -35,4 +52,4 @@ const loginUser = async (username, password) => {
     }
   };
 
-  module.exports = { loginUser }
+  module.exports = { createUser,loginUser }
