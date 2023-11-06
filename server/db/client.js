@@ -3,7 +3,7 @@ const { Client } = require('pg')
 
 //Establishing connect to database (like how we do with http://)
 const dbName = 'schuetzsite'
-const client = new Client(`postgres://localhost:5497/schuetzsite/`)
+const client = new Client(`postgres://localhost:5497/schuetzsite`)
 
 //Export for use in other files
 module.exports = client;

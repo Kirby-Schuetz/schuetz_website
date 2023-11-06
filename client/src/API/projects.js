@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5497/schuetzsite/projects";
+const BASE_URL = "http://localhost:5005/api/projects";
 
 // GET all projects
 export async function fetchAllProjects() {

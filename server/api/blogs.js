@@ -16,6 +16,7 @@ router.post('/', async (req, res, next) => {
 
 // GET all blogs
 router.get('/', async (req, res, next) => {
+    console.log("Request all blogs");
     try{
         const blogs = await getAllBlogs();
         res.send(blogs);

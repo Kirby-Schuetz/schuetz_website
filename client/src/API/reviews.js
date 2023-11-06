@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5497/schuetzsite/reviews";
+const BASE_URL = "http://localhost:5005/api/reviews";
 
 // GET all reviews
 export async function fetchAllReviews() {

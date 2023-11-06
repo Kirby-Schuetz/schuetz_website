@@ -14,16 +14,8 @@ export default function AllBlog() {
   useEffect(() => {
     async function fetchBlog() {
         try {
-        const response = await fetchAllBlogs();
-        console.log(response);
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-            throw new Error("Invalid response format. Expected JSON.");
-        }
-        const storedBlogs = await response.json();
+        const storedBlogs= await fetchAllBlogs();
+        console.log(storedBlogs);
         setBlogs(storedBlogs);
     } catch (error) {
         setError(`Error: ${error.message}`);
