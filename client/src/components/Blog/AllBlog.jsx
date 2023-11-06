@@ -46,7 +46,7 @@ export default function AllBlog() {
                 <h2>{blog.blog_post}</h2>
               </CardContent>
               <button>
-                <Link to="/edit-blog">Edit Blog Post</Link>
+                <Link to={`/blogs/${blog.blog_id}/edit`}>Edit Blog Post</Link>
               </button>
             </Card>
           </div>

@@ -25,12 +25,12 @@ function App() {
         <Route path="/projects" element={<AllProjects />} />
         <Route path="/reviews" element={<AllReviews />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/post-blog" element={<CreateBlog />} />
-        <Route path="/edit-blog" element={<EditBlog />} />
-        <Route path="/post-project" element={<CreateProject />} />
-        <Route path="/edit-project" element={<EditProject />} />
-        <Route path="/post-review" element={<CreateReview />} />
-        <Route path="/edit-review" element={<EditReview />} />
+        <Route path="/blogform" element={<CreateBlog />} />
+        <Route path="/blogs/:blog_id/edit" element={<EditBlog />} />
+        <Route path="/projectform" element={<CreateProject />} />
+        <Route path="/projects/:project_id/edit" element={<EditProject />} />
+        <Route path="/reviewform" element={<CreateReview />} />
+        <Route path="/eviews/:review_id/edit" element={<EditReview />} />
       </Routes>
     </>
   );

@@ -35,15 +35,17 @@ export async function createBlog(postData, token) {
 }
 
 // GET blog by blog_id
-export async function getBlogByBlogId(blog_id) {
+export async function fetchBlogByBlogId(blog_id) {
     try {
         const response = await fetch(`${BASE_URL}/${blog_id}`);
-        if (response.status === 204) {
-            const result = await response.json();
-            return result;
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
+        const result = await response.json();
+        return result;
     } catch (error) {
         console.log(error);
+        throw error;
     }
 }
 
