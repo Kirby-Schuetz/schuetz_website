@@ -4,7 +4,6 @@ const BASE_URL = "http://localhost:5005/api/blogs";
 export async function fetchAllBlogs() {
     console.log("Fetching blogs");
     try {
-        console.log("URL: ", `${BASE_URL}/`);
         const response = await fetch(`${BASE_URL}/`);
         const result = await response.json();
         return result;
@@ -36,6 +35,7 @@ export async function createBlog(postData, token) {
 
 // GET blog by blog_id
 export async function fetchBlogByBlogId(blog_id) {
+    console.log("Fetching single blog")
     try {
         const response = await fetch(`${BASE_URL}/${blog_id}`);
         if (!response.ok) {
@@ -51,6 +51,7 @@ export async function fetchBlogByBlogId(blog_id) {
 
 // PUT edit blog
 export const editBlog = async (blog_id, blogEdits) => {
+    console.log("Submiting edits")
     try {
         const response = await fetch(`${BASE_URL}/${blog_id}/edit`, {
             method: "PUT",
@@ -60,6 +61,7 @@ export const editBlog = async (blog_id, blogEdits) => {
             body: JSON.stringify(blogEdits)
         });
             const result = await response.json();
+            console.log(result);
             return result;
     } catch (error) {
         console.log("Your blog did not update. Try again!", error);
@@ -68,6 +70,7 @@ export const editBlog = async (blog_id, blogEdits) => {
 
 // DELETE blog
 export async function deleteBlog(blog_id) {
+    console.log("Deleting post")
     try {
         const response = await fetch(`${BASE_URL}/${blog_id}`, {
             method: "DELETE",

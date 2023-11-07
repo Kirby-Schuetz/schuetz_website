@@ -22,7 +22,7 @@ const createBlog = async ({blog_title, blog_post, blog_image}) => {
     } catch (error) {
         throw error
     }
-}
+};
 
 const getAllBlogs = async () => {
     try {
@@ -38,7 +38,7 @@ const getAllBlogs = async () => {
     } catch (error) {
         throw error
     }
-}
+};
 
 const getSingleBlog = async (blog_id) => {
     const query = `SELECT * FROM blogs WHERE blog_id = $1`;
@@ -51,17 +51,17 @@ const getSingleBlog = async (blog_id) => {
     } catch (error) {
         throw error
     }
-}
+};
 
 const _bytesToString = (bytes) => {
     const buffer = Buffer.from(bytes);
     const string = buffer.toString();
     return string;
-}
+};
 
 const updateBlog = async (blog_id, updatedBlog) => {
     try {
-        const { rows: [blog], } = await client.query(`
+        const query = `
         UPDATE blogs
         SET
         blog_title = $1,
@@ -69,18 +69,20 @@ const updateBlog = async (blog_id, updatedBlog) => {
         blog_image = $3
         WHERE blog_id = ${blog_id}
         RETURNING *;
-        `,
+        `;
+        const values =
         [
             updatedBlog.blog_title,
             updatedBlog.blog_post,
             updatedBlog.blog_image
         ]
-        );
+        const { rows: [blog], } = await client.query(query, values);
+
         return blog;
     } catch (error) {
         throw error;
     }
-}
+};
 
 const deleteBlog = async (blog_id) => {
     try {
@@ -93,6 +95,6 @@ const deleteBlog = async (blog_id) => {
         } catch (error) {
          throw error;
     }
-}
+};
 
 module.exports = { createBlog, getAllBlogs, getSingleBlog, updateBlog, deleteBlog }

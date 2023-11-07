@@ -41,7 +41,8 @@ router.put('/:blog_id/edit', async (req, res, next) => {
     const blogId = req.params.blog_id;
     const updatedBlog = req.body;
     try {
-        res.status(200).json({message: 'Blog psot updated successfully'});
+        const updatedBlogFromDB= await updateBlog(blogId, updatedBlog);
+        res.status(200).json({message: 'Blog post updated successfully'});
     } catch (error) {
         console.error(error);
         res.status(500).json({message: 'Internal server error'});

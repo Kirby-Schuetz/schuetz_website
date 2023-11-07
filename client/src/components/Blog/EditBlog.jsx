@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { editBlog, fetchBlogByBlogId } from "../../API/blogs";
-import { useParams } from "react-router-dom";
+import { editBlog, fetchBlogByBlogId, deleteBlog } from "../../API/blogs";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function EditBlog() {
   const { blog_id } = useParams();
+  const [isDeleted, setIsDeleted] = useState(false);
   const [postToEdit, setPostToEdit] = useState({
     blog_image: "",
     blog_title: "",
     blog_post: "",
   });
+  const navigate = useNavigate()
 
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export default function EditBlog() {
           blog_post: selectedBlog.blog_post,
         })
       } catch (error) {
-        console.error("Edit was not made. Try again!", error);
+        console.error("Trouble getting post. Try again!", error);
       }
     }
     getBlogByBlogId();
@@ -44,7 +46,16 @@ export default function EditBlog() {
   } catch(error) {
     console.log(error);
   }
-}
+};
+
+const handleDelete = async (blog_id) => {
+  try {
+    const response = await deleteBlog(blog_id);
+    setIsDeleted(true);
+  } catch (error) {
+    console.error("Trouble deleting post. Try again!", error);
+  }
+};
 
 return (
   <>
@@ -88,6 +99,28 @@ return (
       />
       </div>
       <button type="submit">Submit</button>
+
+      {/* <input
+        type="button"
+        value="Submit Changes"
+      onClick={() => {
+        handleSubmit;
+        navigate('/blogs');
+      }}
+      /> */}
+      <input 
+      type="button"
+      value="Delete"
+      onClick={() => {
+        const shouldDelete = window.confirm(
+          "Are you sure you want to delete this post?"
+        );
+        if (shouldDelete) {
+          handleDelete(blog_id);
+          navigate('/blogs');
+        }
+      }}
+      />
     </form>
   </div>
   </>
