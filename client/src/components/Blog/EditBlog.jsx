@@ -1,119 +1,98 @@
 import { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
 import { editBlog, fetchBlogByBlogId } from "../../API/blogs";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import NavBar from "../NavBar";
 
-export default function EditBlog({blog_id}) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [userBlogs, setUserBlogs] = useState([]);
-  const [isFormOpen, setIsFormOpen] = useState(false);
-  const [blogToEdit, setBlogToEdit] = useState({
+export default function EditBlog() {
+  const { blog_id } = useParams();
+  // const [blogPosts, setBlogPosts] = useState([]);
+  const [postToEdit, setPostToEdit] = useState({
+    blog_image: "",
     blog_title: "",
     blog_post: "",
-    blog_image: "",
   });
-  
-  // const { userId } = useLogin();
-  // const navigate = useNavigate();
 
-  // function handleEditFormClose() {
-  //   setIsFormOpen(false);
-  // }
-
-  function handleEditFormOpen(blog) {
-    setBlogToEdit({
-      blog_title: blog.blog_title,
-      blog_post: blog.blog_post,
-      blog_image: blog.blog_image,
-    });
-    setIsFormOpen(true);
-  }
 
   useEffect(() => {
-    async function getUserBlogs() {
-      if (typeof blog_id === "undefined") {
-        console.log("blog_id not defined");
-        return;
-      }
+    async function getBlogByBlogId() {
       try {
         const response = await fetchBlogByBlogId(blog_id);
-        setUserBlogs(response);
-        setIsLoading(false);
-      } catch (e) {
-        console.log(e);
+        const selectedBlog = response;
+        setPostToEdit({
+          blog_id: selectedBlog.blog_id,
+          blog_title: selectedBlog.blog_title,
+          blog_image: selectedBlog.blog_image,
+          blog_post: selectedBlog.blog_post,
+        })
+      } catch (error) {
+        console.error("Edit was not made. Try again!", error);
       }
     }
-    getUserBlogs();
+    getBlogByBlogId();
   }, [blog_id]);
 
-  async function handleEditFormSubmit() {
-    try {
-      const result = await editBlog(blogToEdit.blog_id, blogToEdit);
-      console.log("Update post", result);
-      setIsFormOpen(false);
-    } catch (error) {
-      console.log(error);
-    }
+  async function handleSubmit(e) {
+    e.preventDefault();
+  alert("Post successfully edited!");
+
+  try {
+    const response = await editBlog(
+      postToEdit.blog_id,
+      postToEdit
+    );
+    console.log("Edited", response);
+    const returnVal = response;
+    return returnVal;
+  } catch(error) {
+    console.log(error);
   }
+}
 
-
-  return (
-    <div>
-      {userBlogs.map((blog) => (
-        <div key={blog.blog_id}>
-          <button onClick={() => handleEditFormOpen(blog)}>Edit Post</button>
-          {isFormOpen && (
-            <>
-              <div>
-                <h1>Edit Post</h1>
-                <TextField
-                  id="NP-input-box"
-                  value={blogToEdit.blog_image}
-                  label="Image"
-                  multiline
-                  margin="normal"
-                  fullWidth
-                  onChange={(e) =>
-                    setBlogToEdit({
-                      ...blogToEdit,
-                      blog_image: e.target.value,
-                    })
-                  }
-                />
-                <TextField
-                  id="NP-input-box"
-                  value={blogToEdit.blog_title}
-                  label="Title"
-                  multiline
-                  margin="normal"
-                  fullWidth
-                  onChange={(e) =>
-                    setBlogToEdit({
-                      ...blogToEdit,
-                      blog_title: e.target.value,
-                    })
-                  }
-                />
-                <TextField
-                  id="NP-input-box"
-                  value={blogToEdit.blog_post}
-                  label="Blog Post"
-                  multiline
-                  margin="normal"
-                  fullWidth
-                  onChange={(e) =>
-                    setBlogToEdit({
-                      ...blogToEdit,
-                      blog_post: e.target.value,
-                    })
-                  }
-                />
-                <button onClick={handleEditFormSubmit}>Submit Changes</button>
-              </div>
-            </>
-          )}
-        </div>
-      ))}
-    </div>
-  );
+return (
+  <>
+  <h2>Edit Blog Post</h2>
+  <div>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Image:</label>
+      <textarea
+        type="text"
+        value={postToEdit.blog_image}
+        onChange={(e) => setPostToEdit({
+          ...postToEdit,
+          blog_image: e.target.value,
+        })
+      }
+      />
+      </div>
+      <div>
+        <label>Title:</label>
+       <textarea
+        type="text"
+        value={postToEdit.blog_title}
+        onChange={(e) => setPostToEdit({
+          ...postToEdit,
+          blog_title: e.target.value,
+        })
+      }
+      />
+      </div>
+      <div>
+        <label>Post:</label>
+       <textarea
+        type="text"
+        value={postToEdit.blog_post}
+        onChange={(e) => setPostToEdit({
+          ...postToEdit,
+          blog_post: e.target.value,
+        })
+      }
+      />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  </>
+);
 }
