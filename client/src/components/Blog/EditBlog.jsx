@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
-import { TextField } from "@mui/material";
 import { editBlog, fetchBlogByBlogId } from "../../API/blogs";
-import { useNavigate, useParams } from "react-router-dom";
-import NavBar from "../NavBar";
+import { useParams } from "react-router-dom";
 
 export default function EditBlog() {
   const { blog_id } = useParams();
-  // const [blogPosts, setBlogPosts] = useState([]);
   const [postToEdit, setPostToEdit] = useState({
     blog_image: "",
     blog_title: "",
@@ -34,7 +31,6 @@ export default function EditBlog() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-  alert("Post successfully edited!");
 
   try {
     const response = await editBlog(
@@ -42,6 +38,7 @@ export default function EditBlog() {
       postToEdit
     );
     console.log("Edited", response);
+    alert("Post successfully edited!");
     const returnVal = response;
     return returnVal;
   } catch(error) {

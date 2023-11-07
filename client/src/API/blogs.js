@@ -50,39 +50,33 @@ export async function fetchBlogByBlogId(blog_id) {
 }
 
 // PUT edit blog
-export const editBlog = async (blogEdits, blog_id, token) => {
+export const editBlog = async (blog_id, blogEdits) => {
     try {
-        const response = await fetch(`${BASE_URL}/${blog_id}`, {
+        const response = await fetch(`${BASE_URL}/${blog_id}/edit`, {
             method: "PUT",
             headers: {
-                'Content-Type': 'appication/json',
-                'Authorization': `Bearer ${token}`
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(blogEdits)
         });
-        if (response.status === 202) {
             const result = await response.json();
             return result;
-        }
     } catch (error) {
         console.log("Your blog did not update. Try again!", error);
     }
 }
 
 // DELETE blog
-export async function deleteBlog(blog_id, token) {
+export async function deleteBlog(blog_id) {
     try {
         const response = await fetch(`${BASE_URL}/${blog_id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
             }
         });
-        if (response.status === 201) {
             const result = await response.json();
             return result;
-        }
     } catch (error) {
         console.log("Your post did not delete. Try again!", error);
     }

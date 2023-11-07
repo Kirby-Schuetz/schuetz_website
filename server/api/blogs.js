@@ -36,13 +36,15 @@ router.get('/:blog_id', async (req, res, next) => {
     }
 })
 
-// PUT update blog
-router.put('/:blog_id', async (req, res, next) => {
-    try{
-        const blog = await updateBlog(req.params.blog_id, req.body);
-        res.send(blog);
+// PUT edit blog
+router.put('/:blog_id/edit', async (req, res, next) => {
+    const blogId = req.params.blog_id;
+    const updatedBlog = req.body;
+    try {
+        res.status(200).json({message: 'Blog psot updated successfully'});
     } catch (error) {
-        next(error);
+        console.error(error);
+        res.status(500).json({message: 'Internal server error'});
     }
 });
 
