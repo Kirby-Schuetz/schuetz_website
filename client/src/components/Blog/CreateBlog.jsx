@@ -4,11 +4,12 @@ import { createBlog } from "../../API/blogs";
 import { Card } from "@mui/material";
 import { useNavigate, Navigate } from "react-router-dom";
 
-export default function CreateBlogForm({ token }) {
+export default function CreateBlogForm() {
   const [blogs, setBlogs] = useState([]);
   const [blogTitle, setBlogTitle] = useState("");
   const [blogImage, setBlogImage] = useState("");
   const [blogPost, setBlogPost] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const postData = {
@@ -57,9 +58,8 @@ export default function CreateBlogForm({ token }) {
               multiline
               onChange={(e) => setBlogImage(e.target.value)}
             />
-            {isLoggedIn ? null : <Navigate to="/login" replace={true} />}
             <button type="submit" id="np-button">
-              Blog Post
+              Post Blog
             </button>
           </form>
         </Card>

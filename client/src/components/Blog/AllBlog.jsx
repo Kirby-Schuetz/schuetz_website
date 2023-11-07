@@ -35,6 +35,9 @@ export default function AllBlog() {
     ) : (
       <div>
         <h1 className="header">Blog</h1>
+        <button>
+                <Link to={`/blogform`}>Add Blog Post</Link>
+        </button>
         {blogs.map((blog) => (
           <div key={blog.blog_id} className="posts">
             <Card>
