@@ -14,14 +14,13 @@ export async function fetchAllBlogs() {
 }
 
 // POST create a new blog
-export async function createBlog(postData, token) {
+export async function createBlog(postData) {
     console.log("API Client: ", postData);
     try {
         const response = await fetch(`${BASE_URL}/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(postData)
         });

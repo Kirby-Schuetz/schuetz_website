@@ -16,11 +16,13 @@ router.post('/', async (req, res, next) => {
 
 // GET all projects
 router.get('/', async (req, res, next) => {
+    console.log("Request all projects")
     try{
         const projects = await getAllProjects();
         res.send(projects);
     } catch (error) {
-        next(error);
+        console.error(error);
+        res.status(500).json({ error: "Internal server error"})
     }
 });
 
@@ -35,12 +37,15 @@ router.get('/:project_id', async (req, res, next) => {
 })
 
 // PUT update project
-router.put('/:project_id', async (req, res, next) => {
+router.put('/:project_id/edit', async (req, res, next) => {
+    const projectId = req.params.project_id;
+    const updatedProject = req.body;
     try{
-        const project = await updateProject(req.params.project_id, req.body);
-        res.send(project);
+        const updatedProjectFromDB = await updateProject(projectId, updatedProject);
+        res.status(200).json({message: 'Project post updated successfully'});
     } catch (error) {
-        next(error);
+        console.error(error);
+        res.status(500).json({message: 'Internal server error'});
     }
 });
 

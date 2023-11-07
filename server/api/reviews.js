@@ -16,11 +16,13 @@ router.post('/', async (req, res, next) => {
 
 // GET all reviews
 router.get('/', async (req, res, next) => {
+    console.log("Request all reviews")
     try{
         const reviews = await getAllReviews();
         res.send(reviews);
     } catch (error) {
-        next(error);
+        console.error(error);
+        res.status(500).json({ error: "Internal server error"})
     }
 });
 
@@ -35,12 +37,15 @@ router.get('/:review_id', async (req, res, next) => {
 })
 
 // PUT update review
-router.put('/:review_id', async (req, res, next) => {
+router.put('/:review_id/edit', async (req, res, next) => {
+    const reviewId = req.params.review_id;
+    const updatedReview = req.body;
     try{
-        const review = await updateReview(req.params.review_id, req.body);
-        res.send(review);
+        const updatedReviewFromDB = await updateReview(reviewId, updatedReview);
+        res.status(200).json({message: 'Review post updated successfully'});
     } catch (error) {
-        next(error);
+        console.error(error);
+        res.status(500).json({message: 'Internal server error'});
     }
 });
 

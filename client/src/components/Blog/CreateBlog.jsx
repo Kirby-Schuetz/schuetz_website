@@ -22,7 +22,7 @@ export default function CreateBlogForm() {
     e.preventDefault();
     const APIData = await createBlog(postData);
     console.log(APIData);
-    navigate("/");
+    navigate("/blogs");
   }
   return (
     <div>

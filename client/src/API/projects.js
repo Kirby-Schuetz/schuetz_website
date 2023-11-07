@@ -4,24 +4,22 @@ const BASE_URL = "http://localhost:5005/api/projects";
 export async function fetchAllProjects() {
     console.log("Fetching projects");
     try {
-        console.log("URL: ", `${BASE_URL}/`);
         const response = await fetch(`${BASE_URL}/`);
         const result = await response.json();
         return result;
     } catch (error) {
-        console.log("No projects", error);
+        console.log("No projects!", error);
         return error;
     }
 }
 // POST create a new project
-export async function createProject(postData, token) {
+export async function createProject(postData) {
     console.log("API Client: ", postData)
     try {
         const response = await fetch(`${BASE_URL}`, {
             method: "POST",
             headers: {
-                "Content-Type": "applicatin/json",
-                "Authorization": `Bearer ${token}`
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(postData)
         });
@@ -33,51 +31,49 @@ export async function createProject(postData, token) {
     }
 }
 // GET project by project_id
-export async function getProjectByProjectId(project_id) {
+export async function fetchProjectByProjectId(project_id) {
+    console.log("Fetching single project")
     try {
         const response = await fetch(`${BASE_URL}/${project_id}`);
-        if (response.status === 204) {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }            
             const result = await response.json();
             return result;
-        }
     } catch (error) {
         console.error(error);
+        throw error;
     }
 }
 // PUT edit project
-export const editProject = async (projectEdits, project_id, token) => {
+export const editProject = async (project_id, projectEdits) => {
+    console.log("Submiting edits")
     try {
-      const response = await fetch(`${BASE_URL}/${project_id}`, {
+      const response = await fetch(`${BASE_URL}/${project_id}/edit`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(projectEdits)
       });
-      if (response.status === 202) {
         const result = await response.json();
+        console.log(result);
         return result;
-      }
     } catch (error) {
       console.log("Your project did not update. Try again!", error);
     }
   }
 // DELETE project
-export async function deleteProject(project_id, token) {
+export async function deleteProject(project_id) {
     try {
         const response = await fetch(`${BASE_URL}/${project_id}`, {
             method: "DELETE",
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
             }
         });
-        if (response.status === 201) {
           const result = await response.json();
           return result;
-        }
-        
     } catch (error) {
         console.log("Your project did not delete. Try again!", error);
     }

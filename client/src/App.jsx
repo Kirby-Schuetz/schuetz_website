@@ -30,7 +30,7 @@ function App() {
         <Route path="/projectform" element={<CreateProject />} />
         <Route path="/projects/:project_id/edit" element={<EditProject />} />
         <Route path="/reviewform" element={<CreateReview />} />
-        <Route path="/eviews/:review_id/edit" element={<EditReview />} />
+        <Route path="/reviews/:review_id/edit" element={<EditReview />} />
       </Routes>
     </>
   );

@@ -22,7 +22,7 @@ const createProject = async ({ project_title, project_post, project_image}) => {
     } catch (error) {
         throw error
     }
-}
+};
 
 const getAllProjects = async () => {
     try {
@@ -38,7 +38,7 @@ const getAllProjects = async () => {
     } catch (error) {
         throw error
     }
-}
+};
 
 const getSingleProject = async (project_id) => {
     const query = `SELECT * FROM projects WHERE project_id = $1`;
@@ -51,36 +51,37 @@ const getSingleProject = async (project_id) => {
     } catch (error) {
         throw error
     }
-}
+};
 
 const _bytesToString = (bytes) => {
     const buffer = Buffer.from(bytes);
     const string = buffer.toString();
     return string;
-}
+};
 
 const updateProject = async (project_id, updatedProject) => {
     try {
-        const { rows: [project], } = await client.query(`
+        const query = `
         UPDATE projects
         SET
         project_title = $1,
-        project_summary = $2,
+        project_post = $2,
         project_image = $3
         WHERE project_id = ${project_id}
         RETURNING *;
-        `,
+        `;
+        const values =
         [
             updatedProject.project_title,
-            updatedProject.project_summary,
+            updatedProject.project_post,
             updatedProject.project_image
         ]
-        );
+        const { rows: [project], } = await client.query(query, values);
         return project;
     } catch (error) {
         throw error;
     }
-}
+};
 
 const deleteProject = async (project_id) => {
     try {
@@ -93,6 +94,6 @@ const deleteProject = async (project_id) => {
         } catch (error) {
          throw error;
     }
-}
+};
 
 module.exports = { createProject, getAllProjects, getSingleProject, updateProject, deleteProject }
