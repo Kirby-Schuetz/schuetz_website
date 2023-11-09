@@ -1,0 +1,45 @@
+@font-face {
+    font-family: "LeagueSpartan";
+    src: local('LeagueSpartan'), url("./League_Spartan/LeagueSpartan-VariableFont_wght.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "LibreBaskerville";
+    src: url("./Libre_Baskerville/LibreBaskerville-Regular.ttf") format("truetype");
+  }
+
+body {
+    /* Location of the image */
+    /* background-image: url("./assets/backgroundImage.png"); */
+    background-color: #FBFBED;
+    
+    /* Background image is centered vertically and horizontally at all times */
+    background-position: center center;
+    
+    /* Background image doesn't tile */
+    background-repeat: round;
+    
+    /* Background image is fixed in the viewport so that it doesn't move when
+    the content's height is greater than the image's height */
+    background-attachment: fixed;
+    
+    /* This is what makes the background image rescale based
+    on the container's size */
+    background-size: contain;
+    
+    /* Set a background color that will be displayed
+    while the background image is loading */
+    background-color: #FBFBED;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* div {
+        width: 100%;
+        height: auto;
+        margin-bottom:12px;
+        padding: .75%;
+    } */
