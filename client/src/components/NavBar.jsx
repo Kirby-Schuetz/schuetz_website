@@ -6,54 +6,37 @@ import "../App.css"; // Replace with the correct path to your CSS file
 export default function NavBar() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
 
+  const toggleNav = () => {
+    setIsNavExpanded(!isNavExpanded);
+  };
+
+  const closeNav = () => {
+    setIsNavExpanded(false);
+  };
+
   return (
-    <nav className="navBar">
-      <img className="navLogo" src={learnLogo} alt="learning techodyssey logo" />
-      <label 
-      className="menu-button-container"
-      >
-      <button
-        type="button"
-        id="menu-toggle"
-        className={`menu-button ${isNavExpanded ? 'active' : ''}`}
-        onClick={() => {
-          setIsNavExpanded(!isNavExpanded);
-        }}
-      >
-        <svg viewBox="0 0 10 8" width="40">
-          <path
-            d="M1 1h8M1 4h 8M1 7h8"
-            stroke="#000"
-            strokeWidth="2"
-            strokeLinecap="round"
+    <nav className="navbar">
+      <div className="logo-container">
+      <img
+            className="navLogo"
+            src={learnLogo}
+            alt="learning techodyssey logo"
+            width="200"
+            height="300"
           />
-        </svg>
-      </button>
-      </label>
-      <div
-        className={
-          isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
-        }
-      >
-        <ul className="navigation-menu">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/blogs">Blog</Link>
-          </li>
-          <li>
-            <Link to="/projects">Projects</Link>
-          </li>
-          <li>
-            <Link to="/reviews">Reviews</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-        </ul>
-      </div>
+          </div>
+          <button className="hamburger" onClick={toggleNav}>
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </button>
+          <div className={`nav-links ${isNavExpanded ? 'expanded' : ''}`}>
+            <Link to="/" onClick={closeNav}>Home</Link>
+            <Link to="/blogs" onClick={closeNav}>Blog</Link>
+            <Link to="/projects" onClick={closeNav}>Projects</Link>
+            <Link to="/reviews" onClick={closeNav}>Reviews</Link>
+            <Link to="/contact" onClick={closeNav}>Contact</Link>
+      </div >
     </nav>
   );
 }
-
