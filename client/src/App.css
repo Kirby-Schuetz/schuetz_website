@@ -29,9 +29,10 @@
 }
 
 h1 {
-  font-family: "LeagueSpartan";
+  font-family: "LibreBaskerville";
+  text-decoration: underline;
   color: #1E221F;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-style: underline;
 }
 
