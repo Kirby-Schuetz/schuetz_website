@@ -12,6 +12,22 @@
   font-style: normal;
 }
 
+.MuiOutlinedInput-notchedOutline {
+  border-color: #84AC9C !important;
+}
+
+.MuiFilledInput-root {
+  border-bottom: 1px solid #84AC8C !important;
+}
+
+.MuiInput-root {
+  border-bottom: 1px solid #84AC8C !important;
+}
+
+.MuiInputLabel-root{
+  color: #2C382D !important;
+}
+
 h1 {
   font-family: "LeagueSpartan";
   color: #1E221F;
@@ -27,22 +43,25 @@ body {
 
 button {
   font-family: "LibreBaskerville";
-  background-color: #92978C;
-  color: #1E221F;
+  background-color: #FBFBED;
+  color: #92978C;
   font-size: 18px;
+  padding: .5rem;
+
 }
 .button {
   font-family: "LibreBaskerville";
-  background-color: #92978C;
+  background-color: #FBFBED;
+  color: #848483;
+  font-size: 18px;
+  padding: .5rem;
+}
+a { 
   color: #1E221F;
   font-size: 18px;
 }
-a { 
-  color: #1E221F; 
-  font-size: 18px;
-}
 a:visited { 
-  color: #2C382D; 
+  color: #92978C;
   font-size: 18px;
 }
 

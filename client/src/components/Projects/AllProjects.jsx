@@ -38,6 +38,7 @@ export default function AllProject() {
           <button>
             <Link to={`/projectform`}>Add Project Post</Link>
           </button>
+         
           {projects.map((project) => (
             <div key={project.project_id} className="posts">
               <Card style={{ background: "#FBFBED", color: "#1E221F" }}>

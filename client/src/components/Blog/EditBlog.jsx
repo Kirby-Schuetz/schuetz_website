@@ -107,6 +107,7 @@ export default function EditBlog() {
               }
             />
             <button type="submit">Submit</button>
+            <></> <></> <></>
             <button
               className="button"
               onClick={() => {
