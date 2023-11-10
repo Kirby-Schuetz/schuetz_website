@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { editBlog, fetchBlogByBlogId, deleteBlog } from "../../API/blogs";
 import { useParams, useNavigate } from "react-router-dom";
+import { Card, TextField } from "@mui/material";
 
 export default function EditBlog() {
   const { blog_id } = useParams();
@@ -10,8 +11,8 @@ export default function EditBlog() {
     blog_title: "",
     blog_post: "",
   });
-  const navigate = useNavigate()
-
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getBlogByBlogId() {
@@ -23,7 +24,7 @@ export default function EditBlog() {
           blog_title: selectedBlog.blog_title,
           blog_image: selectedBlog.blog_image,
           blog_post: selectedBlog.blog_post,
-        })
+        });
       } catch (error) {
         console.error("Trouble getting post. Try again!", error);
       }
@@ -34,95 +35,95 @@ export default function EditBlog() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-  try {
-    const response = await editBlog(
-      postToEdit.blog_id,
-      postToEdit
-    );
-    console.log("Edited", response);
-    alert("Post successfully edited!");
-    const returnVal = response;
-    return returnVal;
-  } catch(error) {
-    console.log(error);
+    try {
+      const response = await editBlog(postToEdit.blog_id, postToEdit);
+      console.log("Edited", response);
+      alert("Post successfully edited!");
+      navigate("/blogs");
+      const returnVal = response;
+      return returnVal;
+    } catch (error) {
+      console.log(error);
+    }
   }
-};
 
-const handleDelete = async (blog_id) => {
-  try {
-    const response = await deleteBlog(blog_id);
-    setIsDeleted(true);
-  } catch (error) {
-    console.error("Trouble deleting post. Try again!", error);
-  }
-};
+  const handleDelete = async (blog_id) => {
+    try {
+      const response = await deleteBlog(blog_id);
+      console.log("Deleted", response);
+      setIsDeleted(true);
+    } catch (error) {
+      console.error("Trouble deleting post. Try again!", error);
+    }
+  };
 
-return (
-  <>
-  <h2>Edit Blog Post</h2>
-  <div>
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Image:</label>
-      <textarea
-        type="text"
-        value={postToEdit.blog_image}
-        onChange={(e) => setPostToEdit({
-          ...postToEdit,
-          blog_image: e.target.value,
-        })
-      }
-      />
+  return (
+    <div>
+      <div className="form">
+        <h1 className="header">edit a blog</h1>
+        <Card style={{ background: "#FBFBED", color: "#1E221F" }}>
+          <form onSubmit={handleSubmit}>
+            {error && <p>{error}</p>}
+            <TextField
+              id="NP-input-box"
+              label="Image"
+              fullWidth
+              margin="normal"
+              multiline
+              value={postToEdit.blog_image}
+              onChange={(e) =>
+                setPostToEdit({
+                  ...postToEdit,
+                  blog_image: e.target.value,
+                })
+              }
+            />
+            <TextField
+              id="NP-input-box"
+              label="Title"
+              fullWidth
+              margin="normal"
+              multiline
+              value={postToEdit.blog_title}
+              onChange={(e) =>
+                setPostToEdit({
+                  ...postToEdit,
+                  blog_title: e.target.value,
+                })
+              }
+            />
+            <TextField
+              id="NP-input-box"
+              label="Post"
+              fullWidth
+              margin="normal"
+              multiline
+              value={postToEdit.blog_post}
+              onChange={(e) =>
+                setPostToEdit({
+                  ...postToEdit,
+                  blog_post: e.target.value,
+                })
+              }
+            />
+            <button type="submit">Submit</button>
+            <button
+              className="button"
+              onClick={() => {
+                const shouldDelete = window.confirm(
+                  "Are you sure you want to delete this post?"
+                );
+                if (shouldDelete) {
+                  handleDelete(blog_id);
+                  navigate("/blogs");
+                }
+              }}
+            >
+              Delete
+            </button>
+          </form>
+        </Card>
       </div>
-      <div>
-        <label>Title:</label>
-       <textarea
-        type="text"
-        value={postToEdit.blog_title}
-        onChange={(e) => setPostToEdit({
-          ...postToEdit,
-          blog_title: e.target.value,
-        })
-      }
-      />
-      </div>
-      <div>
-        <label>Post:</label>
-       <textarea
-        type="text"
-        value={postToEdit.blog_post}
-        onChange={(e) => setPostToEdit({
-          ...postToEdit,
-          blog_post: e.target.value,
-        })
-      }
-      />
-      </div>
-      <button type="submit">Submit</button>
-
-      {/* <input
-        type="button"
-        value="Submit Changes"
-      onClick={() => {
-        handleSubmit;
-        navigate('/blogs');
-      }}
-      /> */}
-      <input 
-      type="button"
-      value="Delete"
-      onClick={() => {
-        const shouldDelete = window.confirm(
-          "Are you sure you want to delete this post?"
-        );
-        if (shouldDelete) {
-          handleDelete(blog_id);
-          navigate('/blogs');
-        }
-      }}
-      />
-    </form>
-  </div>
-  </>
-);
+    </div>
+  );
 }

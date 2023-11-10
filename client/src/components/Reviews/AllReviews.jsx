@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchAllReviews } from "../../API/reviews";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import { Card, CardContent, CardMedia, CardActionArea } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function AllReview() {
@@ -13,49 +11,51 @@ export default function AllReview() {
 
   useEffect(() => {
     async function fetchReview() {
-        try {
-        const storedReviews= await fetchAllReviews();
+      try {
+        const storedReviews = await fetchAllReviews();
         console.log(storedReviews);
         setReviews(storedReviews);
-    } catch (error) {
+      } catch (error) {
         setError(`Error: ${error.message}`);
-    } finally {
+      } finally {
         setIsLoading(false);
+      }
     }
-}
     fetchReview();
   }, []);
 
   return (
     <>
-    {isLoading ? (
+      {isLoading ? (
         <div>Loading...</div>
-    ) : error ? (
+      ) : error ? (
         <div>{error}</div>
-    ) : (
-      <div>
-        <h1 className="header">Reviews</h1>
-        <button>
-                <Link to={`/reviewform`}>Add Review Post</Link>
-        </button>
-        {reviews.map((review) => (
-          <div key={review.review_id} className="posts">
-            <Card>
-              <h3>{review.review_title}</h3>
-              <CardMedia>
-                <img src={review.review_image} alt={review.review_title} />
-              </CardMedia>
-              <CardContent>
-                <h2>{review.review_post}</h2>
-              </CardContent>
-              <button>
-                <Link to={`/reviews/${review.review_id}/edit`}>Edit Review Post</Link>
-              </button>
-            </Card>
-          </div>
-        ))}
-      </div>
-       )}
+      ) : (
+        <div>
+          <h1 className="header">reviews</h1>
+          <button>
+            <Link to={`/reviewform`}>Add Review Post</Link>
+          </button>
+          {reviews.map((review) => (
+            <div key={review.review_id} className="posts">
+              <Card style={{ background: "#FBFBED", color: "#1E221F" }}>
+                <h2>{review.review_title}</h2>
+                  <CardMedia>
+                    <img src={review.review_image} alt={review.review_title} />
+                  </CardMedia>
+                  <CardContent>
+                    <h3>{review.review_post}</h3>
+                  </CardContent>
+                <button>
+                  <Link to={`/reviews/${review.review_id}/edit`}>
+                    Edit Review Post
+                  </Link>
+                </button>
+              </Card>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 }

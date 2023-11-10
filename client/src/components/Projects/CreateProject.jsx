@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { TextField } from "@mui/material";
+import { Card, TextField } from "@mui/material";
 import { createProject } from "../../API/projects";
-import { Card } from "@mui/material";
 import { useNavigate, Navigate } from "react-router-dom";
 
 export default function CreateProjectForm() {
@@ -27,8 +26,8 @@ export default function CreateProjectForm() {
   return (
     <div>
       <div className="form">
-        <h1 className="header">Post a Project</h1>
-        <Card>
+        <h1 className="header">post a project</h1>
+        <Card style={{ background: "#FBFBED", color: "#1E221F" }}>
           <form onSubmit={handleSubmit}>
             {error && <p>{error}</p>}
             <TextField

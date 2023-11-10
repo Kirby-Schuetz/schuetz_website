@@ -13,50 +13,49 @@ export default function AllBlog() {
 
   useEffect(() => {
     async function fetchBlog() {
-        try {
-        const storedBlogs= await fetchAllBlogs();
+      try {
+        const storedBlogs = await fetchAllBlogs();
         console.log(storedBlogs);
         setBlogs(storedBlogs);
-    } catch (error) {
+      } catch (error) {
         setError(`Error: ${error.message}`);
-    } finally {
+      } finally {
         setIsLoading(false);
+      }
     }
-}
     fetchBlog();
   }, []);
 
   return (
     <>
-    {isLoading ? (
+      {isLoading ? (
         <div>Loading...</div>
-    ) : error ? (
+      ) : error ? (
         <div>{error}</div>
-    ) : (
-      <div>
-        <h1 className="header">Blog</h1>
-        <button>
-                <Link to={`/blogform`}>Add Blog Post</Link>
-        </button>
-        {blogs.map((blog) => (
-          <div key={blog.blog_id} className="posts">
-            <Card>
-              <h3>{blog.blog_title}</h3>
-              <CardMedia>
-                <img src={blog.blog_image} alt={blog.blog_title} />
-              </CardMedia>
-              <CardContent>
-                <h2>{blog.blog_post}</h2>
-              </CardContent>
-              <button>
-                <Link to={`/blogs/${blog.blog_id}/edit`}>Edit Blog Post</Link>
-              </button>
-            </Card>
-          </div>
-        ))}
-      </div>
-       )}
+      ) : (
+        <div>
+          <h1 className="header">blog</h1>
+          <button>
+            <Link to={`/blogform`}>Add Blog Post</Link>
+          </button>
+          {blogs.map((blog) => (
+            <div key={blog.blog_id} className="posts">
+              <Card style={{ background: "#FBFBED", color: "#1E221F" }}>
+                <h2>{blog.blog_title}</h2>
+                <CardMedia>
+                  <img src={blog.blog_image} alt={blog.blog_title} />
+                </CardMedia>
+                <CardContent>
+                  <h3>{blog.blog_post}</h3>
+                </CardContent>
+                <button>
+                  <Link to={`/blogs/${blog.blog_id}/edit`}>Edit Blog Post</Link>
+                </button>
+              </Card>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
-  
 }

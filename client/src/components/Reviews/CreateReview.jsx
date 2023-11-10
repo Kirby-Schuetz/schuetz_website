@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { TextField } from "@mui/material";
+import { Card, TextField, CardContent } from "@mui/material";
 import { createReview } from "../../API/reviews";
-import { Card } from "@mui/material";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateReviwForm() {
   const [reviews, setReviews] = useState([]);
@@ -27,13 +26,16 @@ export default function CreateReviwForm() {
   return (
     <div>
       <div className="form">
-        <h1 className="header">Post a Review</h1>
-        <Card>
+        <h1 className="header">post a review</h1>
+        <Card style={{ background: "#FBFBED", color: "#1E221F" }}>
+          <CardContent>
           <form onSubmit={handleSubmit}>
             {error && <p>{error}</p>}
             <TextField
               id="NP-input-box"
               value={reviewTitle}
+              inputProps={{ style: {color: "black"}}}
+              style={{ flex: 1, margin: '0 20px 0 0', color: 'white'}}
               label="Title"
               fullWidth
               margin="normal"
@@ -62,6 +64,7 @@ export default function CreateReviwForm() {
               Post Project
             </button>
           </form>
+          </CardContent>
         </Card>
       </div>
     </div>

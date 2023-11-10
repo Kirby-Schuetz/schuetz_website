@@ -31,11 +31,21 @@ export default function NavBar() {
             <span className="bar"></span>
           </button>
           <div className={`nav-links ${isNavExpanded ? 'expanded' : ''}`}>
+          <div className="logo-container">
+      <img
+            className="navLogo"
+            src={learnLogo}
+            alt="learning techodyssey logo"
+            width="200"
+            height="300"
+          />
+          </div>
             <Link to="/" onClick={closeNav}>Home</Link>
             <Link to="/blogs" onClick={closeNav}>Blog</Link>
             <Link to="/projects" onClick={closeNav}>Projects</Link>
             <Link to="/reviews" onClick={closeNav}>Reviews</Link>
             <Link to="/contact" onClick={closeNav}>Contact</Link>
+            <a href="#" className="close" onClick={closeNav}></a>
       </div >
     </nav>
   );

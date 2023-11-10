@@ -13,49 +13,54 @@ export default function AllProject() {
 
   useEffect(() => {
     async function fetchProject() {
-        try {
-        const storedProjects= await fetchAllProjects();
+      try {
+        const storedProjects = await fetchAllProjects();
         console.log(storedProjects);
         setProjects(storedProjects);
-    } catch (error) {
+      } catch (error) {
         setError(`Error: ${error.message}`);
-    } finally {
+      } finally {
         setIsLoading(false);
+      }
     }
-}
     fetchProject();
   }, []);
 
   return (
     <>
-    {isLoading ? (
+      {isLoading ? (
         <div>Loading...</div>
-    ) : error ? (
+      ) : error ? (
         <div>{error}</div>
-    ) : (
-      <div>
-        <h1 className="header">Projects</h1>
-        <button>
-                <Link to={`/projectform`}>Add Project Post</Link>
-        </button>
-        {projects.map((project) => (
-          <div key={project.project_id} className="posts">
-            <Card>
-              <h3>{project.project_title}</h3>
-              <CardMedia>
-                <img src={project.project_image} alt={project.project_title} />
-              </CardMedia>
-              <CardContent>
-                <h2>{project.project_post}</h2>
-              </CardContent>
-              <button>
-                <Link to={`/projects/${project.project_id}/edit`}>Edit Project Post</Link>
-              </button>
-            </Card>
-          </div>
-        ))}
-      </div>
-       )}
+      ) : (
+        <div>
+          <h1 className="header">projects</h1>
+          <button>
+            <Link to={`/projectform`}>Add Project Post</Link>
+          </button>
+          {projects.map((project) => (
+            <div key={project.project_id} className="posts">
+              <Card style={{ background: "#FBFBED", color: "#1E221F" }}>
+                <h2>{project.project_title}</h2>
+                <CardMedia>
+                  <img
+                    src={project.project_image}
+                    alt={project.project_title}
+                  />
+                </CardMedia>
+                <CardContent>
+                  <h3>{project.project_post}</h3>
+                </CardContent>
+                <button>
+                  <Link to={`/projects/${project.project_id}/edit`}>
+                    Edit Project Post
+                  </Link>
+                </button>
+              </Card>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 }
