@@ -7,7 +7,7 @@
 
 @font-face {
   font-family: "LibreBaskerville";
-  src: url("./fonts/Libre_Baskerville/LibreBaskerville-Regular.ttf") format("truetype");
+  src: local('LibreBaskerville'), url("./fonts/Libre_Baskerville/LibreBaskerville-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -48,8 +48,14 @@ button {
   color: #92978C;
   font-size: 18px;
   padding: .5rem;
-
+  transition-duration: 0.4s;
 }
+
+button:hover {
+  background-color: #84AC8C;
+  color: #FBFBED;
+}
+
 .button {
   font-family: "LibreBaskerville";
   background-color: #FBFBED;
@@ -57,12 +63,19 @@ button {
   font-size: 18px;
   padding: .5rem;
 }
+
+.button:hover {
+  background-color: #84AC8C;
+  color: #FBFBED;
+  z-index: 1;
+}
+
 a { 
   color: #1E221F;
   font-size: 18px;
 }
 a:visited { 
-  color: #92978C;
+  color: #1E221F;
   font-size: 18px;
 }
 
