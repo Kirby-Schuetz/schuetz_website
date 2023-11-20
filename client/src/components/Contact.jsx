@@ -22,8 +22,8 @@ export default function Contact() {
           contentLabel="Contact Modal"
           style={{
               content: {
-                width: '70%', // Adjust the width as needed
-                height: '100%', // Adjust the height as needed
+                width: '50%', // Adjust the width as needed
+                height: 'auto', // Adjust the height as needed
                 margin: 'auto', // Center the modal horizontally
                 marginTop: '10%', // Adjust the top margin as needed
                 backgroundColor: "#FBFBED",
