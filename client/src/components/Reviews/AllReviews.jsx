@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { fetchAllReviews } from "../../API/reviews";
-import { Card, CardContent, CardMedia, CardActionArea } from "@mui/material";
+import { Card, CardContent, CardMedia } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import { useLogin } from '../Context/LoginContext';
 
 export default function AllReview() {
+  const { isLoggedIn } = useLogin();
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,9 +35,11 @@ export default function AllReview() {
       ) : (
         <div>
           <h1 className="header">reviews</h1>
+          {isLoggedIn && (
           <button className="addButton">
             <Link to={`/reviewform`}>Add Review Post</Link>
           </button>
+          )}
           <div></div>
           {reviews.map((review) => (
             <div key={review.review_id} className="posts">
@@ -47,11 +51,13 @@ export default function AllReview() {
                   <CardContent>
                     <h3>{review.review_post}</h3>
                   </CardContent>
+                  {isLoggedIn && (
                 <button>
                   <Link to={`/reviews/${review.review_id}/edit`}>
                     Edit Review Post
                   </Link>
                 </button>
+                )}
               </Card>
             </div>
           ))}

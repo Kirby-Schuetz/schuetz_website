@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { logIn } from "../API/users";
 import { FormControl, TextField } from "@mui/material";
-// import { useLogin } from "../context/loginContext";
+import { useLogin } from "../components/Context/LoginContext";
 
 export default function LogInPage() {
   const [username, setUsername] = useState("");
@@ -45,7 +45,7 @@ export default function LogInPage() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={handleLogin}>Sign in</button>
-        <Link to="/createUser">Register here.</Link>
+        {/* <Link to="/createUser">Register here.</Link> */}
       </FormControl>
     </div>
   );

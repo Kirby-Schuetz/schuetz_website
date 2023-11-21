@@ -45,6 +45,7 @@ export default function NavBar() {
             <Link to="/projects" onClick={closeNav}>Projects</Link>
             <Link to="/reviews" onClick={closeNav}>Reviews</Link>
             <Link to="/contact" onClick={closeNav}>Contact</Link>
+            <Link to="/login" onClick={closeNav}>Login</Link>
             <a href="#" className="close" onClick={closeNav}></a>
       </div >
       </div>

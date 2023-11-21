@@ -4,8 +4,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Link, useNavigate } from "react-router-dom";
+import { useLogin } from '../Context/LoginContext';
+
 
 export default function AllProject() {
+  const { isLoggedIn } = useLogin();
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -35,9 +38,11 @@ export default function AllProject() {
       ) : (
         <div>
           <h1 className="header">projects</h1>
+          {isLoggedIn && (
           <button className="addButton">
             <Link to={`/projectform`}>Add Project Post</Link>
           </button>
+          )}
           <div></div>
 
           {projects.map((project) => (
@@ -53,11 +58,13 @@ export default function AllProject() {
                 <CardContent>
                   <h3>{project.project_post}</h3>
                 </CardContent>
+                {isLoggedIn && (
                 <button>
                   <Link to={`/projects/${project.project_id}/edit`}>
                     Edit Project Post
                   </Link>
                 </button>
+                )}
               </Card>
             </div>
           ))}

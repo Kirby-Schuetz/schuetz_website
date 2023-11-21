@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Router } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
 import AllBlog from "./components/Blog/AllBlog";
@@ -13,11 +13,14 @@ import EditProject from "./components/Projects/EditProject";
 import CreateReview from "./components/Reviews/CreateReview";
 import EditReview from "./components/Reviews/EditReview";
 import LoginPage from "./components/LoginPage";
+import { LoginProvider } from './components/Context/LoginContext';
 
 function App() {
   return (
     <>
       <NavBar />
+      <LoginProvider>
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -32,6 +35,7 @@ function App() {
         <Route path="/reviewform" element={<CreateReview />} />
         <Route path="/reviews/:review_id/edit" element={<EditReview />} />
       </Routes>
+      </LoginProvider>
     </>
   );
 }
