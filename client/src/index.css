@@ -5,7 +5,7 @@
 
   @font-face {
     font-family: "LibreBaskerville";
-    src: url("./Libre_Baskerville/LibreBaskerville-Regular.ttf") format("truetype");
+    src: local('LibreBaskerville'), url("./Libre_Baskerville/LibreBaskerville-Regular.ttf") format("truetype");
   }
 
 body {

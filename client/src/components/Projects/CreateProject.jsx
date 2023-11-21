@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Card, TextField } from "@mui/material";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import { createProject } from "../../API/projects";
 import { useNavigate, Navigate } from "react-router-dom";
 
@@ -39,14 +41,9 @@ export default function CreateProjectForm() {
               multiline
               onChange={(e) => setProjectTitle(e.target.value)}
             />
-            <TextField
-              id="NP-input-box"
+            <ReactQuill
               value={projectPost}
-              label="Post"
-              fullWidth
-              margin="normal"
-              multiline
-              onChange={(e) => setProjectPost(e.target.value)}
+              onChange={(value) => setProjectPost(value)}
             />
             <TextField
               id="NP-input-box"

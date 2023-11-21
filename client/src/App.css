@@ -28,6 +28,10 @@
   color: #2C382D !important;
 }
 
+.posts{
+  white-space: pre-wrap;
+}
+
 h1 {
   font-family: "LibreBaskerville";
   text-decoration: underline;
