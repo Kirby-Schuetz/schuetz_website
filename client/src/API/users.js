@@ -23,3 +23,18 @@ export async function logIn(username, password) {
         console.log("You are not logged in. Try again!", error);
       }
     }
+
+    // LOGOUT
+    export const logout = async () => {
+      console.log("there");
+        const response = await fetch(`${BASE_URL}/logout`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+    
+        if (!response.ok) {
+          throw new Error('Logout failed');
+        }
+    };

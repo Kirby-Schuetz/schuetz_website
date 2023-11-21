@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const authenticate = require('../api/auth');
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = require('../secrets');
+
 
 const { loginUser } = require('../db/helpers/usershelper');
 
@@ -16,6 +19,8 @@ router.post('/login', authenticate, async (req, res) => {
   
       if (user) {
         // Successful login
+        const token = jwt.sign({ userId: user.user_id }, JWT_SECRET, { expiresIn: '1h' });
+        res.cookie('token', token, { httpOnly: true, maxAge: 3600000 }); // 1 hour expiration
         return res.status(200).json({ success: true, user });
       } else {
         // Failed login
@@ -26,6 +31,11 @@ router.post('/login', authenticate, async (req, res) => {
       return res.status(500).json({ error: 'An error occurred during login.' });
     }
   });
+
+  router.post('/logout', (req, res) => {
+    res.clearCookie('token');
+    res.status(200).json({ success: true });
+});
 
 //   export router
 module.exports = router;

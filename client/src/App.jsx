@@ -18,9 +18,8 @@ import { LoginProvider } from './components/Context/LoginContext';
 function App() {
   return (
     <>
-      <NavBar />
       <LoginProvider>
-
+      <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />

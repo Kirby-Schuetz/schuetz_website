@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import learnLogo from "../assets/learnLogo.png";
 import backgroundTile from "../assets/backgroundTile.png";
 import { useState } from "react";
+import LogoutButton from "../components/LogoutPage";
+
 import "../App.css"; // Replace with the correct path to your CSS file
 
 export default function NavBar() {
@@ -46,6 +48,7 @@ export default function NavBar() {
             <Link to="/reviews" onClick={closeNav}>Reviews</Link>
             <Link to="/contact" onClick={closeNav}>Contact</Link>
             <Link to="/login" onClick={closeNav}>Login</Link>
+            <LogoutButton />
             <a href="#" className="close" onClick={closeNav}></a>
       </div >
       </div>
