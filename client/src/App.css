@@ -106,6 +106,7 @@ a:visited {
   cursor: pointer;
   background: none;
   border: none;
+  right: 0;
 }
 
 .bar {
@@ -124,12 +125,12 @@ a:visited {
   margin: 0;
   position: absolute;
   top: 60px; /* Adjust this value based on your design */
-  left: 0;
+  right: 0;
   width: 100%;
   background-color: #FBFBED;
   flex-direction: column; /* Stack links vertically */
   display: none; /* Initially hide the links */
-  z-index:2;
+  z-index: 2;
 }
 
 .nav-links.expanded {
@@ -137,24 +138,33 @@ a:visited {
   color: #2C382D;
 }
 
+.background-container {
+  object-fit: contain;
+  flex-direction: row;
+  overflow: hidden;
+  opacity: 0.4;
+  height: 100px;
+}
+
 .nav-links a {
   text-decoration: underline;
   color: #2C382D;
   margin: 10px;
+  margin-right: 100px;
   transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
   font-family: 'LibreBaskerville', serif;
   font-size: 18px;
-  background-color: #FBFBED;
+  text-align: right;
 }
 .nav-links a:hover {
-  box-shadow: inset 100px 0 0 0 #84AC8C;
+  box-shadow: inset -100px 0 0 0 #84AC8C;
   color:#333;
   opacity: 1;
   background-color: #FBFBED;
 }
 .close {
   position: absolute;
-  right: 32px;
+  right: 0;
   top: 32px;
   width: 32px;
   height: 32px;
