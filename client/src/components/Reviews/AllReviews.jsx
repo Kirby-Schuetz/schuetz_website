@@ -33,9 +33,10 @@ export default function AllReview() {
       ) : (
         <div>
           <h1 className="header">reviews</h1>
-          <button>
+          <button className="addButton">
             <Link to={`/reviewform`}>Add Review Post</Link>
           </button>
+          <div></div>
           {reviews.map((review) => (
             <div key={review.review_id} className="posts">
               <Card style={{ background: "#FBFBED", color: "#1E221F" }}>

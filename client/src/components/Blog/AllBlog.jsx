@@ -35,9 +35,10 @@ export default function AllBlog() {
       ) : (
         <div>
           <h1 className="header">blog</h1>
-          <button>
+          <button className="addButton">
             <Link to={`/blogform`}>Add Blog Post</Link>
           </button>
+          <div></div>
           {blogs.map((blog) => (
             <div key={blog.blog_id} className="posts">
               <Card style={{ background: "#FBFBED", color: "#1E221F" }}>

@@ -32,6 +32,10 @@
   white-space: pre-wrap;
 }
 
+.addButton{
+  margin-left: 85%;
+}
+
 h1 {
   font-family: "LibreBaskerville";
   text-decoration: underline;
@@ -81,6 +85,12 @@ a {
 a:visited { 
   color: #1E221F;
   font-size: 18px;
+}
+a:hover {
+  box-shadow: inset 1000px 0 0 0 #84AC8C;
+  color:#333;
+  opacity: 1;
+  background-color: #FBFBED;
 }
 
 /* Navbar styles */
