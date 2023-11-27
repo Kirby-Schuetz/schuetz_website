@@ -7,7 +7,8 @@ function authenticate(req, res, next) {
   const token = req.headers.authorization;
 
   if (!token) {
-    return res.status(401).json({ error: 'Unauthorized: Missing token.' });
+    console.log("no valid tokens")
+    return next();
   }
 
   try {
@@ -15,6 +16,7 @@ function authenticate(req, res, next) {
     req.user = user; // Attach the user information to the request object
     next();
   } catch (error) {
+    console.log("Error during token verification")
     return res.status(401).json({ error: 'Unauthorized: Invalid token.' });
   }
 }

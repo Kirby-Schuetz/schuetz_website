@@ -13,6 +13,7 @@ import EditProject from "./components/Projects/EditProject";
 import CreateReview from "./components/Reviews/CreateReview";
 import EditReview from "./components/Reviews/EditReview";
 import LoginPage from "./components/LoginPage";
+import LogoutPage from "./components/LogoutPage";
 import { LoginProvider } from './components/Context/LoginContext';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/logout" element={<LogoutPage />} />
         <Route path="/blogs" element={<AllBlog />} />
         <Route path="/projects" element={<AllProjects />} />
         <Route path="/reviews" element={<AllReviews />} />

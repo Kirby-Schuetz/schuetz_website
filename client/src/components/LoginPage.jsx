@@ -7,9 +7,10 @@ import { useLogin } from "../components/Context/LoginContext";
 export default function LogInPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLoggedIn, setUserId, setUserName } = useLogin();
+  const { setIsLoggedIn, setUserId, setUserName, setAuth } = useLogin();
   const navigate = useNavigate();
 
+  
   async function handleLogin(e) {
     e.preventDefault();
 
@@ -20,6 +21,11 @@ export default function LogInPage() {
         setIsLoggedIn(true);
         setUserId(result.user.user_id);
         setUserName(result.user.username);
+        
+        const token = result.token;
+        setAuth({ token });
+        localStorage.setItem("token", token);
+        console.log("token")
       }
 
       navigate("/");
@@ -27,6 +33,8 @@ export default function LogInPage() {
       console.log(e);
     }
   }
+
+  
 
   return (
     <div>

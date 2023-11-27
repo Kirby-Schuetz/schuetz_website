@@ -1,4 +1,3 @@
-// LogoutButton.js
 import { useLogin } from '../components/Context/LoginContext';
 import { logout } from '../API/users'; // Create this function to make a request to the logout route
 
@@ -11,14 +10,17 @@ export default function LogoutButton() {
       setIsLoggedIn(false);
       setUserId(null);
       setUserName(null);
+
+      window.location.href = "/";
     } catch (error) {
       console.error('Error during logout:', error);
     }
   };
 
   return (
-    isLoggedIn && (
-      <button onClick={handleLogout}>Logout</button>
-    )
+    isLoggedIn ?
+        <button onClick={() => handleLogout()}>Logout</button>
+        :
+        null
   );
 }
