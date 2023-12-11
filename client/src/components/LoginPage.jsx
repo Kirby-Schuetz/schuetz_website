@@ -26,9 +26,14 @@ export default function LogInPage() {
         setAuth({ token });
         localStorage.setItem("token", token);
         console.log("token")
-      }
+        
+        window.alert("Success!");
+        navigate("/");
 
-      navigate("/");
+    } else {
+      window.alert("Invalid username or password. Please try again");
+      navigate("/login");
+    }
     } catch (e) {
       console.log(e);
     }
