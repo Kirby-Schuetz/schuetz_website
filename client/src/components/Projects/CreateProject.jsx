@@ -3,7 +3,7 @@ import { Card, TextField } from "@mui/material";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { createProject } from "../../API/projects";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateProjectForm() {
   const [projects, setProjects] = useState([]);
@@ -21,9 +21,14 @@ export default function CreateProjectForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const APIData = await createProject(postData);
-    console.log(APIData);
-    navigate("/projects");
+    try{
+      const APIData = await createProject(postData);
+      console.log(APIData);
+      navigate("/projects");
+    } catch (error) {
+      console.error("Error in handleSubmit:", error.message);
+    }
+   
   }
   return (
     <div>
@@ -41,9 +46,14 @@ export default function CreateProjectForm() {
               multiline
               onChange={(e) => setProjectTitle(e.target.value)}
             />
-            <ReactQuill
+            <TextField
+              id="NP-input-box"
               value={projectPost}
-              onChange={(value) => setProjectPost(value)}
+              label="Post"
+              fullWidth
+              margin="normal"
+              multiline
+              onChange={(e) => setProjectPost(e.target.value)}
             />
             <TextField
               id="NP-input-box"

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card, TextField } from "@mui/material";
 import { createBlog } from "../../API/blogs";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateBlogForm() {
   const [blogs, setBlogs] = useState([]);
@@ -19,9 +19,14 @@ export default function CreateBlogForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const APIData = await createBlog(postData);
-    console.log(APIData);
-    navigate("/blogs");
+    try {
+      const APIData = await createBlog(postData);
+      console.log(APIData);
+      navigate("/blogs");
+    } catch (error) {
+      console.error("Error in handleSubmit:", error.message);
+    }
+    
   }
   return (
     <div>

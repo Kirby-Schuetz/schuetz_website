@@ -8,8 +8,10 @@ router.post('/', async (req, res, next) => {
     try{
         console.log("Express route: ", req.body);
         const blog = await createBlog(req.body);
+        console.log("Blog created:", blog);
         res.send(blog);
     } catch(error) {
+        console.error("Error creating blog:", error);
         next(error);
     }
 });

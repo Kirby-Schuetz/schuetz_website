@@ -71,9 +71,14 @@ export async function deleteReview(review_id) {
               'Content-Type': 'application/json',
             }
         });
-          const result = await response.json();
-          return result; 
+        if (response.ok) {
+            return { success: true, message: 'Post deleted successfully.' };
+        } else {
+            // Handle non-JSON responses
+            return { success: false, message: 'Post deletion failed.' };
+        }
     } catch (error) {
-        console.log("Your review did not delete. Try again!", error);
+        console.error("Error deleting post:", error);
+        return { success: false, message: 'Post deletion failed.' };
     }
 }

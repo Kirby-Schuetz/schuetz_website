@@ -23,11 +23,17 @@ export async function createProject(postData) {
             },
             body: JSON.stringify(postData)
         });
+
+        if (!response.ok) {
+            throw new Error('HTTP error! Status: ${response.status');
+        }
+
         const result = await response.json();
-        console.log(result);
+        console.log("Posted project!", result);
         return result;
     } catch (error) {
         console.log("Your project did not post", error);
+        throw error;
     }
 }
 // GET project by project_id
@@ -69,12 +75,18 @@ export async function deleteProject(project_id) {
         const response = await fetch(`${BASE_URL}/${project_id}`, {
             method: "DELETE",
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             }
         });
-          const result = await response.json();
-          return result;
+
+        if (response.ok) {
+            return { success: true, message: 'Post deleted successfully.' };
+        } else {
+            // Handle non-JSON responses
+            return { success: false, message: 'Post deletion failed.' };
+        }
     } catch (error) {
-        console.log("Your project did not delete. Try again!", error);
+        console.error("Error deleting post:", error);
+        return { success: false, message: 'Post deletion failed.' };
     }
 }

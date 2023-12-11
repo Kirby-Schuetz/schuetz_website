@@ -24,11 +24,17 @@ export async function createBlog(postData) {
             },
             body: JSON.stringify(postData)
         });
+
+        if (!response.ok) {
+            throw new Error('HTTP error! Status: ${response.status');
+        }
+
         const result = await response.json();
-        console.log(result);
+        console.log("Posted blog!", result);
         return result;
     } catch (error) {
-        console.log("Your blog did not post. Try again!", error);
+        console.log("Error creating blog:", error.message);
+        throw error;
     }
 }
 
@@ -77,9 +83,14 @@ export async function deleteBlog(blog_id) {
                 'Content-Type': 'application/json',
             }
         });
-            const result = await response.json();
-            return result;
+        if (response.ok) {
+            return { success: true, message: 'Post deleted successfully.' };
+        } else {
+            // Handle non-JSON responses
+            return { success: false, message: 'Post deletion failed.' };
+        }
     } catch (error) {
-        console.log("Your post did not delete. Try again!", error);
+        console.error("Error deleting post:", error);
+        return { success: false, message: 'Post deletion failed.' };
     }
 }

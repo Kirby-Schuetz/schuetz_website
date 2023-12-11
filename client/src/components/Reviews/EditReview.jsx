@@ -112,10 +112,10 @@ export default function EditReview() {
               }
             />
             <button type="submit">Submit</button>
-            <></> <></> <></>
             <button
               className="button"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();                
                 const shouldDelete = window.confirm(
                   "Are you sure you want to delete this post?"
                 );
