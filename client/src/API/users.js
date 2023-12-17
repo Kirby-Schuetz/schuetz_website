@@ -1,4 +1,4 @@
-const BASE_URL = `${process.env.SERVICE_URL}/api/users`;
+const BASE_URL = `${import.meta.env.VITE_SERVICE_URL}/api/users`;
 
 //   LOGIN
 export async function logIn(username, password) {

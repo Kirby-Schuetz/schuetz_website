@@ -1,4 +1,4 @@
-const BASE_URL = `${process.env.SERVICE_URL}/api/projects`;
+const BASE_URL = `${import.meta.env.VITE_SERVICE_URL}/api/projects`;
 
 // GET all projects
 export async function fetchAllProjects() {
