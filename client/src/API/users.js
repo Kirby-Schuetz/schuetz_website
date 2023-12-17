@@ -2,7 +2,6 @@ const BASE_URL = `${import.meta.env.VITE_SERVICE_URL}/api/users`;
 
 //   LOGIN
 export async function logIn(username, password) {
-    console.log("users.jsx");  
     try {
         const response = await fetch(`${BASE_URL}/login`, {
           method: "POST",
@@ -17,7 +16,6 @@ export async function logIn(username, password) {
           }),
         });
         const result = await response.json();
-        console.log(result);
         return result;
       } catch (error) {
         console.log("You are not logged in. Try again!", error);

@@ -30,7 +30,7 @@ export async function createBlog(postData) {
         }
 
         const result = await response.json();
-        console.log("Posted blog!", result);
+        console.log("Posted blog!");
         return result;
     } catch (error) {
         console.log("Error creating blog:", error.message);
@@ -66,7 +66,6 @@ export const editBlog = async (blog_id, blogEdits) => {
             body: JSON.stringify(blogEdits)
         });
             const result = await response.json();
-            console.log(result);
             return result;
     } catch (error) {
         console.log("Your blog did not update. Try again!", error);

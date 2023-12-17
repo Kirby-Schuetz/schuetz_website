@@ -14,7 +14,6 @@ export async function fetchAllReviews() {
 }
 // POST create a review
 export async function createReview(postData) {
-    console.log("API Client: ", postData)
     try {
         const response = await fetch(`${BASE_URL}/`, {
             method: "POST",
@@ -24,7 +23,6 @@ export async function createReview(postData) {
             body: JSON.stringify(postData)
         });
         const result = await response.json();
-        console.log(result);
         return result;
     } catch (error) {
         console.log("Your review did not post", error);
@@ -38,7 +36,7 @@ export async function fetchReviewByReviewId(review_id) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }            
         const result = await response.json();
-            return result;
+        return result;
     } catch (error) {
         console.error(error);
         throw error;
@@ -46,7 +44,7 @@ export async function fetchReviewByReviewId(review_id) {
 }
 // PUT edit review
 export const editReview = async (review_id, reviewEdits) => {
-    console.log("Submitting edits")
+    console.log("Submitting edits");
     try {
       const response = await fetch(`${BASE_URL}/${review_id}/edit`, {
         method: "PUT",
@@ -56,7 +54,6 @@ export const editReview = async (review_id, reviewEdits) => {
         body: JSON.stringify(reviewEdits)
       });
         const result = await response.json();
-        console.log(result);
         return result;
     } catch (error) {
       console.log("Your review did not update. Try again!", error);

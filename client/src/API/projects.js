@@ -29,7 +29,7 @@ export async function createProject(postData) {
         }
 
         const result = await response.json();
-        console.log("Posted project!", result);
+        console.log("Posted project!");
         return result;
     } catch (error) {
         console.log("Your project did not post", error);
