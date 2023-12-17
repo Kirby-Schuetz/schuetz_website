@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5005/api/projects";
+const BASE_URL = `${process.env.URL}/api/projects`;
 
 // GET all projects
 export async function fetchAllProjects() {

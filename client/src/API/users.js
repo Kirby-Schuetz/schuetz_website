@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5005/api/users";
+const BASE_URL = `${process.env.URL}/api/users`;
 
 //   LOGIN
 export async function logIn(username, password) {
