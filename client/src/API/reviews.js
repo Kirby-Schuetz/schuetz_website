@@ -1,4 +1,4 @@
-const BASE_URL = `${process.env.URL}/api/reviews`;
+const BASE_URL = `${process.env.SERVICE_URL}/api/reviews`;
 
 // GET all reviews
 export async function fetchAllReviews() {
