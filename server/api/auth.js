@@ -1,6 +1,6 @@
 // middleware/authenticate.js
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('../secrets');
+const JWT_SECRET = process.env.JWT_SECRET;
 
 function authenticate(req, res, next) {
   // Check for a valid token in the request headers

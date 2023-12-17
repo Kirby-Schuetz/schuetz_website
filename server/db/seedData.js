@@ -1,7 +1,7 @@
 const users = [
     {
         username: "lackman.kirby",
-        password: "yuri"
+        password: process.env.PASSWORD
     }
 ]
 
