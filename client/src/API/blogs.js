@@ -1,4 +1,4 @@
-const BASE_URL = `${import.meta.env.VITE_SERVICE_URL}/api/blog`;
+const BASE_URL = `${import.meta.env.VITE_SERVICE_URL}/api/blogs`;
 
 // GET all blogs
 export async function fetchAllBlogs() {
