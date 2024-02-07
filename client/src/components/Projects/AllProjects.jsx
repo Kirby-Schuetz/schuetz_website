@@ -19,7 +19,12 @@ export default function AllProject() {
       try {
         const storedProjects = await fetchAllProjects();
         console.log(storedProjects);
-        setProjects(storedProjects);
+
+        if (Array.isArray(storedProjects)) {
+          setProjects(storedProjects);
+        } else {
+          setError('Projects are being worked on. Come back soon!');
+        }
       } catch (error) {
         setError(`Error: ${error.message}`);
       } finally {
@@ -45,29 +50,33 @@ export default function AllProject() {
           )}
           <div></div>
 
-          {projects.map((project) => (
-            <div key={project.project_id} className="posts">
-              <Card style={{ background: "#FBFBED", color: "#1E221F" }}>
-                <h2>{project.project_title}</h2>
-                <CardMedia>
-                  <img
-                    src={project.project_image}
-                    alt={project.project_title}
-                  />
-                </CardMedia>
-                <CardContent>
-                  <h3>{project.project_post}</h3>
-                </CardContent>
-                {isLoggedIn && (
-                <button>
-                  <Link to={`/projects/${project.project_id}/edit`}>
-                    Edit Project Post
-                  </Link>
-                </button>
-                )}
-              </Card>
-            </div>
-          ))}
+          {Array.isArray(projects) && projects.length > 0 ? (
+            projects.map((project) => (
+              <div key={project.project_id} className="posts">
+                <Card style={{ background: "#FBFBED", color: "#1E221F" }}>
+                  <h2>{project.project_title}</h2>
+                  <CardMedia>
+                    <img
+                      src={project.project_image}
+                      alt={project.project_title}
+                    />
+                  </CardMedia>
+                  <CardContent>
+                    <h3>{project.project_post}</h3>
+                  </CardContent>
+                  {isLoggedIn && (
+                  <button>
+                    <Link to={`/projects/${project.project_id}/edit`}>
+                      Edit Project Post
+                    </Link>
+                  </button>
+                  )}
+                </Card>
+              </div>
+            ))
+          ) : (
+            <div>No projects available</div>
+          )}
         </div>
       )}
     </>
