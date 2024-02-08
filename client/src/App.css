@@ -134,7 +134,7 @@ a:hover {
   padding: 0;
   margin: 0;
   position: absolute;
-  top: 60px; /* Adjust this value based on your design */
+  top: 60px;
   right: 0;
   width: 100%;
   background-color: #FBFBED;
@@ -146,6 +146,7 @@ a:hover {
 .nav-links.expanded {
   display: flex; /* Display links when the menu is expanded */
   flex-direction: row;
+  align-items: center;
   color: #2C382D;
 }
 
