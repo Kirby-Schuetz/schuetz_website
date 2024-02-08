@@ -18,17 +18,17 @@ export default function ModalContent() {
     return (
         <div className="contactCard">
           <h1>contact card</h1>
-          <img src={linkedinIcon} alt="linkedin link" 
+          <img src={linkedinIcon} alt="linkedin link" width="25" height="25"
           onClick={(e) => {e.preventDefault();
             window.location.href='https://www.linkedin.com/in/kirby-schuetz';
             }}
             />
-          <img src={githubIcon} alt="github link" 
+          <img src={githubIcon} alt="github link" width="25" height="25"
           onClick={(e) => {e.preventDefault();
             window.location.href='https://github.com/Kirby-Schuetz';
             }}
             />
-          <img src={downloadIcon} alt="download resume" 
+          <img src={downloadIcon} alt="download resume" width="25" height="25"
           onClick={() => toPDF()}/>
           <Document
             file={ schuetzResume }
