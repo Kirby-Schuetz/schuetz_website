@@ -138,13 +138,14 @@ a:hover {
   right: 0;
   width: 100%;
   background-color: #FBFBED;
-  flex-direction: column; /* Stack links vertically */
+  flex-direction: row; /* Stack links horizontally */
   display: none; /* Initially hide the links */
   z-index: 2;
 }
 
 .nav-links.expanded {
   display: flex; /* Display links when the menu is expanded */
+  flex-direction: row;
   color: #2C382D;
 }
 
