@@ -18,6 +18,7 @@ export default function ModalContent() {
     return (
         <div className="contactCard">
           <h1>contact card</h1>
+          <div className="nav-container">
           <img src={linkedinIcon} alt="linkedin link" width="25" height="25"
           onClick={(e) => {e.preventDefault();
             window.location.href='https://www.linkedin.com/in/kirby-schuetz';
@@ -30,6 +31,7 @@ export default function ModalContent() {
             />
           <img src={downloadIcon} alt="download resume" width="25" height="25"
           onClick={() => toPDF()}/>
+          </div>
           <Document
             file={ schuetzResume }
             >
