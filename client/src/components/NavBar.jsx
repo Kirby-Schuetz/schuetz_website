@@ -39,9 +39,9 @@ export default function NavBar() {
           <Link to="/projects" onClick={closeNav}>
             projects
           </Link>
-          <Link to="/reviews" onClick={closeNav}>
+          {/* <Link to="/reviews" onClick={closeNav}>
             reviews
-          </Link>
+          </Link> */}
           <Link to="/contact" onClick={closeNav}>
             contact
           </Link>

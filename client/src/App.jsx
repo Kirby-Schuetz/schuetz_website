@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
 import AllBlog from "./components/Blog/AllBlog";
 import AllProjects from "./components/Projects/AllProjects";
-import AllReviews from "./components/Reviews/AllReviews";
+// import AllReviews from "./components/Reviews/AllReviews";
 import Contact from "./components/Contact";
 import CreateBlog from "./components/Blog/CreateBlog";
 import EditBlog from "./components/Blog/EditBlog";
@@ -27,7 +27,7 @@ function App() {
         <Route path="/logout" element={<LogoutPage />} />
         <Route path="/blogs" element={<AllBlog />} />
         <Route path="/projects" element={<AllProjects />} />
-        <Route path="/reviews" element={<AllReviews />} />
+        {/* <Route path="/reviews" element={<AllReviews />} /> */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/blogform" element={<CreateBlog />} />
         <Route path="/blogs/:blog_id/edit" element={<EditBlog />} />
