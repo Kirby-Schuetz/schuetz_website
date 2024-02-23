@@ -21,7 +21,7 @@ export default function AllProject() {
         console.log(storedProjects);
 
         if (Array.isArray(storedProjects)) {
-          setProjects(storedProjects);
+          setProjects(storedProjects.reverse());
         } else {
           setError('Projects are being worked on. Come back soon!');
         }
