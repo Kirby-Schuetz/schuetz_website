@@ -20,24 +20,25 @@ export default function ModalContent() {
           <h1>contact card</h1>
           <div className="nav-container">
           <img src={linkedinIcon} alt="linkedin link" width="25" height="25"
-          onClick={(e) => {e.preventDefault();
-            window.location.href='https://www.linkedin.com/in/kirby-schuetz';
+            onClick={(e) => {e.preventDefault();
+              window.location.href='https://www.linkedin.com/in/kirby-schuetz';
             }}
-            />
+          />
           <img src={githubIcon} alt="github link" width="25" height="25"
-          onClick={(e) => {e.preventDefault();
-            window.location.href='https://github.com/Kirby-Schuetz';
+            onClick={(e) => {e.preventDefault();
+              window.location.href='https://github.com/Kirby-Schuetz';
             }}
-            />
+          />
           <img src={downloadIcon} alt="download resume" width="25" height="25"
-          onClick={() => toPDF()}/>
+            onClick={() => toPDF()}
+          />
           </div>
-          <Document
-            file={ schuetzResume }
-            >
-            <Page             
-            pageNumber={1} 
-            style={{ width: 'auto', height: '100%' }}/>
+          <Document file={ schuetzResume } >
+            {
+              Array.from(new Array(2), (el, index) => (
+                <Page key={`page_${index + 1}`} pageNumber={index + 1} style={{ width: 'auto', height: '100%' }} />
+              ))
+            }
           </Document>
         </div>
         
