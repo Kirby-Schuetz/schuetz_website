@@ -19,12 +19,7 @@ export default function AllProject() {
       try {
         const storedProjects = await fetchAllProjects();
         console.log(storedProjects);
-
-        if (Array.isArray(storedProjects)) {
-          setProjects(storedProjects.reverse());
-        } else {
-          setError('Projects are being worked on. Come back soon!');
-        }
+          setProjects(storedProjects);
       } catch (error) {
         setError(`Error: ${error.message}`);
       } finally {

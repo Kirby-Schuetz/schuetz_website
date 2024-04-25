@@ -18,7 +18,7 @@ export default function AllBlog() {
       try {
         const storedBlogs = await fetchAllBlogs();
         console.log(storedBlogs);
-        setBlogs(storedBlogs.reverse());
+        setBlogs(storedBlogs);
       } catch (error) {
         setError(`Error: ${error.message}`);
       } finally {
