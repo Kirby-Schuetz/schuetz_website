@@ -17,7 +17,7 @@ export default function ModalContent() {
   const { toPDF, targetRef } = usePDF({filename: 'schuetzResume.pdf'});
     return (
         <div className="contactCard">
-          <h1>contact card</h1>
+          <h1>contact & resume</h1>
           <div className="nav-container">
           <img src={linkedinIcon} alt="linkedin link" width="25" height="25"
             onClick={(e) => {e.preventDefault();

@@ -26,7 +26,7 @@ export default function Contact() {
                 height: 'auto', // Adjust the height as needed
                 margin: 'auto', // Center the modal horizontally
                 marginTop: '10%', // Adjust the top margin as needed
-                backgroundColor: "#FBFBED",
+                backgroundColor: "#f1efdf",
               },
             }}
         >
