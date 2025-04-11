@@ -13,19 +13,19 @@
 }
 
 .MuiOutlinedInput-notchedOutline {
-  border-color: #84AC9C !important;
+  border-color: #8ea4a2!important;
 }
 
 .MuiFilledInput-root {
-  border-bottom: 1px solid #84AC8C !important;
+  border-bottom: 1px solid #8ea4a2!important;
 }
 
 .MuiInput-root {
-  border-bottom: 1px solid #84AC8C !important;
+  border-bottom: 1px solid #8ea4a2 !important;
 }
 
 .MuiInputLabel-root{
-  color: #2C382D !important;
+  color: #333 !important;
 }
 
 .posts{
@@ -39,58 +39,58 @@
 h1 {
   font-family: "LibreBaskerville";
   text-decoration: underline;
-  color: #1E221F;
+  color: #333;
   font-size: 3rem;
   font-style: underline;
 }
 
 body {
   font-family: "LibreBaskerville";
-  color: #1E221F;
+  color: #333;
   padding: 1rem;
 }
 
 button {
   font-family: "LibreBaskerville";
-  background-color: #FBFBED;
-  color: #92978C;
+  background-color: #f1efdf;
+  color: #8ea4a2;
   font-size: 18px;
   padding: .5rem;
   transition-duration: 0.4s;
 }
 
 button:hover {
-  background-color: #84AC8C;
-  color: #FBFBED;
+  background-color: #8ea4a2;
+  color: #d8c4c0;
 }
 
 .button {
   font-family: "LibreBaskerville";
-  background-color: #FBFBED;
-  color: #848483;
+  background-color: #f1efdf;
+  color: #8ea4a2;
   font-size: 18px;
   padding: .5rem;
 }
 
 .button:hover {
-  background-color: #84AC8C;
-  color: #FBFBED;
+  background-color: #8ea4a2;
+  color: #d8c4c0;
   z-index: 1;
 }
 
 a { 
-  color: #1E221F;
+  color: #333;
   font-size: 18px;
 }
 a:visited { 
-  color: #1E221F;
+  color: #333;
   font-size: 18px;
 }
 a:hover {
-  box-shadow: inset 1000px 0 0 0 #84AC8C;
+  box-shadow: inset 1000px 0 0 0 #d8c4c0;
   color:#333;
   opacity: 1;
-  background-color: #FBFBED;
+  background-color: #f1efdf;
 }
 
 /* Navbar styles */
@@ -98,8 +98,8 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #FBFBED;
-  color: #2C382D;
+  background-color: #f1efdf;
+  color: #333;
   position: flex; /* Position relative for absolute positioning of menu */
 }
 
@@ -123,7 +123,7 @@ a:hover {
   display: flex;
   width: 25px;
   height: 3px;
-  background-color: #2C382D;
+  background-color: #333;
   margin: 6px 0;
 }
 
@@ -137,7 +137,7 @@ a:hover {
   top: 60px;
   right: 0;
   width: 100%;
-  background-color: #FBFBED;
+  background-color: #f1efdf;
   flex-direction: row; /* Stack links horizontally */
   display: none; /* Initially hide the links */
   z-index: 2;
@@ -147,7 +147,7 @@ a:hover {
   display: flex; /* Display links when the menu is expanded */
   flex-direction: row;
   align-items: center;
-  color: #2C382D;
+  color: #333;
 }
 
 .background-container {
@@ -160,7 +160,7 @@ a:hover {
 
 .nav-links a {
   text-decoration: underline;
-  color: #2C382D;
+  color: #8ea4a2;
   margin: 10px;
   margin-right: 100px;
   transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
@@ -169,10 +169,10 @@ a:hover {
   text-align: right;
 }
 .nav-links a:hover {
-  box-shadow: inset -100px 0 0 0 #84AC8C;
-  color:#333;
+  box-shadow: inset -100px 0 0 0 #d8c4c0;
+  color:#9d2f3c;
   opacity: 1;
-  background-color: #FBFBED;
+  background-color: #f1efdf;
 }
 .close {
   position: absolute;
@@ -212,7 +212,7 @@ a:hover {
     top: 60px;
     left: 0;
     width: 100%;
-    background-color: #FBFBED;
+    background-color: #f1efdf;
   }
 
   .nav-links.expanded {

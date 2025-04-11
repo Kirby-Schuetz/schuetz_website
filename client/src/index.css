@@ -11,7 +11,7 @@
 body {
     /* Location of the image */
     /* background-image: url("./assets/backgroundImage.png"); */
-    background-color: #FBFBED;
+    background-color: #F1EFDF;
     
     /* Background image is centered vertically and horizontally at all times */
     background-position: center center;
@@ -29,7 +29,7 @@ body {
     
     /* Set a background color that will be displayed
     while the background image is loading */
-    background-color: #FBFBED;
+    background-color: #F1EFDF;
     }
 
     img {
