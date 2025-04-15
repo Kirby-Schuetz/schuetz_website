@@ -12,6 +12,14 @@
   font-style: normal;
 }
 
+iframe:focus {
+  outline: none;
+}
+
+iframe[seamless] {
+  display: block;
+}
+
 .MuiOutlinedInput-notchedOutline {
   border-color: #8ea4a2!important;
 }
