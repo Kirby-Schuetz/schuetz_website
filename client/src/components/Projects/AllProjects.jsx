@@ -7,6 +7,30 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from '../Context/LoginContext';
 
 
+// Helper function to convert markdown links to HTML links
+function formatProjectPost(text) {
+  if (!text) return "";
+  
+// Convert markdown links [text](url) to HTML links
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const formattedText = text.replace(linkRegex, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+  
+// Split content at "---" to separate description from links
+  const parts = formattedText.split('---');
+  
+  if (parts.length > 1) {
+    return (
+      <>
+        <p className="project-description">{parts[0].trim()}</p>
+        <div className="project-links" dangerouslySetInnerHTML={{ __html: parts[1].trim() }} />
+      </>
+    );
+  }
+  
+  return <p>{formattedText}</p>;
+}
+
+
 export default function AllProject() {
   const { isLoggedIn } = useLogin();
   const [projects, setProjects] = useState([]);
@@ -48,7 +72,7 @@ export default function AllProject() {
           {Array.isArray(projects) && projects.length > 0 ? (
             projects.map((project) => (
               <div key={project.project_id} className="posts">
-                <Card style={{ background: "#FBFBED", color: "#1E221F" }}>
+                <Card style={{ background: "#f1efdf", color: "#333" }}>
                   <h2>{project.project_title}</h2>
                   <CardMedia>
                     <img
@@ -57,7 +81,9 @@ export default function AllProject() {
                     />
                   </CardMedia>
                   <CardContent>
-                    <h3>{project.project_post}</h3>
+                    <div className="prject-content">
+                      {formatProjectPost(project.project_post)}
+                      </div>
                   </CardContent>
                   {isLoggedIn && (
                   <button>
